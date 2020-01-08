@@ -1,12 +1,16 @@
 <template>
-    <div id="home">
-        <h1>Bonjour {{login}}, bienvenue sur Api-Tise</h1>
-        <div id="buttons">
-            <button type="button" class="buttonList">Liste des cocktails</button>
-            <button class="buttonRandom">Cocktail aléatoire</button>
-            <button class="buttonIngred">Quels cocktails avec mes ingrédients ?</button>
-        </div>
+  <div id="home">
+    <div class="title">
+      <h1>Bonjour {{login}}</h1>
+      <h1>Bienvenue sur Api-Tise !</h1>
     </div>
+    <div id="buttons">
+      <button  type="button" class="button">Liste des cocktails</button>
+      <button type="button" class="button">Cocktail aléatoire</button>
+      <button type="button" class="button">Quels cocktails avec mes ingrédients ?</button>
+      <button type="button" class="button">Mes cocktails</button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -15,80 +19,60 @@
         components: {},
         data() {
             return {
-                login: 'sfondain'
+                login: 'Mère de Pierre en Y (Et merceee)'
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    #home {
-        height: 100%;
-        display: grid;
-        grid-template-columns: 15% 35% 35% 15%;
-        grid-template-rows: 15% 35% 35% 15%;
-        background-color: aliceblue;
-    }
+  #home {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 15% 35% 35% 15%;
+    grid-template-rows: 15% 35% 35% 15%;
+    background-color: aliceblue;
+  }
 
-    h1 {
-        grid-row: 1/2;
-        grid-column: 2/4;
-        margin: auto;
-    }
+  .title {
+    margin-top: 30px;
+    grid-row: 1/2;
+    grid-column: 2/4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-    #buttons {
-        width: 100%;
-        grid-row: 2/4;
-        grid-column: 1/5;
-        margin: auto;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
+  h2 {
+    grid-row: 0/2;
+    grid-column: 2/4;
+    margin: auto;
+  }
 
-    .buttonList {
-        width: 300px;
-        height: 300px;
-        border-radius: 180px;
-        border: 1px solid black;
-        background-color: white;
-        outline: none;
-    }
+  #buttons {
+    width: 100%;
+    grid-row: 2/4;
+    grid-column: 1/5;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 
-    .buttonList:hover {
-        background-color: cornflowerblue;
-        color: white;
-        cursor: url(http://cur.cursors-4u.net/food/foo-5/foo462.cur),default;
-    }
+  .button {
+    width: 300px;
+    height: 300px;
+    border-radius: 180px;
+    border: 1px solid black;
+    background-color: white;
+    outline: none;
+  }
 
-    .buttonIngred {
-        width: 300px;
-        height: 300px;
-        border-radius: 180px;
-        border: 1px solid black;
-        background-color: white;
-        outline: none;
-    }
-
-    .buttonIngred:hover {
-        background-color: cornflowerblue;
-        color: white;
-        cursor: url(http://cur.cursors-4u.net/food/foo-5/foo462.cur),default;
-    }
-
-    .buttonRandom {
-        width: 300px;
-        height: 300px;
-        border-radius: 180px;
-        border: 1px solid black;
-        background-color: white;
-        outline: none;
-    }
-
-    .buttonRandom:hover {
-        background-color: cornflowerblue;
-        color: white;
-        cursor: url(http://cur.cursors-4u.net/food/foo-5/foo462.cur),default;
-    }
+  .button:hover {
+    background-color: cornflowerblue;
+    color: white;
+    cursor: url(http://cur.cursors-4u.net/food/foo-5/foo462.cur), default;
+  }
 
 </style>
