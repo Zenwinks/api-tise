@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import ListeCocktail from "../views/ListeCocktail";
-import SearchIngredientCocktail from "../views/SearchIngredientCocktail";
+import SearchCocktailByIngredient from "../views/SearchCocktailByIngredient";
 
 Vue.use(VueRouter)
 
@@ -25,8 +25,8 @@ const routes = [
   },
   {
     path: '/i',
-    name: 'SearchIngredientCocktail',
-    component: SearchIngredientCocktail
+    name: 'SearchCocktailByIngredient',
+    component: SearchCocktailByIngredient
   }
 ]
 
