@@ -19,7 +19,7 @@
         components: {},
         data() {
             return {
-                login: 'Mère de Pierre en Y (Et merceee)'
+                login: 'Lucas'
             }
         }
     }
