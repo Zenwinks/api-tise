@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import ListeCocktail from "../views/ListeCocktail";
+import SearchIngredientCocktail from "../views/SearchIngredientCocktail";
 
 Vue.use(VueRouter)
 
@@ -22,7 +23,11 @@ const routes = [
     name: 'ListeCocktail',
     component: ListeCocktail
   },
-
+  {
+    path: '/i',
+    name: 'SearchIngredientCocktail',
+    component: SearchIngredientCocktail
+  }
 ]
 
 const router = new VueRouter({

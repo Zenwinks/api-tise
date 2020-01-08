@@ -5,10 +5,10 @@
       <h1>Bienvenue sur Api-Tise !</h1>
     </div>
     <div id="buttons">
-      <button @click="redirectList()" type="button" class="button">Liste des cocktails</button>
-      <button type="button" class="button">Cocktail aléatoire</button>
-      <button type="button" class="button">Quels cocktails avec mes ingrédients ?</button>
-      <button type="button" class="button">Mes cocktails</button>
+      <button @click="redirectList('1')" type="button" class="button">Liste des cocktails</button>
+      <button @click="redirectList('2')" type="button" class="button">Cocktail aléatoire</button>
+      <button @click="redirectList('3')" type="button" class="button">Quels cocktails avec mes ingrédients ?</button>
+      <button @click="redirectList('4')" type="button" class="button">Mes cocktails</button>
     </div>
   </div>
 </template>
@@ -23,8 +23,22 @@
             }
         },
         methods:{
-            redirectList:function (){
-                this.$router.push({path: "/listeCocktail"})
+            redirectList:function (page){
+              switch (page) {
+                case '1':
+                  this.$router.push({path: "/listeCocktail"})
+                  break;
+                case '2':
+                  // this.$router.push({path: "/"})
+                  break;
+                case '3':
+                  this.$router.push({path: "/i"})
+                  break;
+                case '4':
+                  // this.$router.push({path: "/"})
+                  break;
+              }
+
             }
         }
 
