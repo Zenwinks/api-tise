@@ -1,10 +1,10 @@
 <template>
-  <div :id="$style.app">
+  <div id="app">
     <router-view/>
   </div>
 </template>
 
-<style module scoped>
+<style scoped>
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

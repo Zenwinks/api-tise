@@ -1,10 +1,10 @@
 <template>
-  <div :class="$style.login">
-    <div :class="$style.username">
+  <div class="login">
+    <div class="username">
       <label for="username">Login :</label>
       <input id="username" type="text">
     </div>
-    <div :class="$style.password">
+    <div class="password">
       <label for="password">Mot de passe :</label>
       <input id="password" type="password">
     </div>
@@ -17,9 +17,13 @@
   }
 </script>
 
-<style module scoped>
+<style scoped lang="scss">
   .login {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 </style>

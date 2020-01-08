@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.home">
+  <div class="home">
 
   </div>
 </template>
@@ -15,6 +15,6 @@
   }
 </script>
 
-<style lang="scss" module scoped>
+<style lang="scss" scoped>
 
 </style>
