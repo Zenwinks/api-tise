@@ -3,13 +3,37 @@
     <div class="title">
       <h1>Api-Tise</h1>
       <h2>Liste des cocktails</h2>
+      <div id="listCocktail">
+        <ul>
+          <li v-for="(i,key) in infos" :key="key">
+            <p>{{i.strDrink}}</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
-        name: "ListeCocktail"
+        name: "ListeCocktail",
+        data() {
+            return {
+                letter: "a",
+                infos: []
+            }
+        },
+        created() {
+            axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=`+this.letter)
+                .then(response => {
+                    this.infos = response.data.drinks
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
+        }
     }
 </script>
 
