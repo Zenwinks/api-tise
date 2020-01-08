@@ -7,6 +7,7 @@
         <ul>
           <li v-for="(i,key) in infos" :key="key">
             <p>{{i.strDrink}}</p>
+            <img :src="i.strDrinkThumb+'/preview'">
           </li>
         </ul>
       </div>
@@ -47,6 +48,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  ul{
+    list-style: none;
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  ul li{
+    width:20%;
+    padding: 2px;
+    float:left;
   }
 
 </style>
