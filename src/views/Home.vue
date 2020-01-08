@@ -5,7 +5,7 @@
       <h1>Bienvenue sur Api-Tise !</h1>
     </div>
     <div id="buttons">
-      <button  type="button" class="button">Liste des cocktails</button>
+      <button @click="redirectList()" type="button" class="button">Liste des cocktails</button>
       <button type="button" class="button">Cocktail aléatoire</button>
       <button type="button" class="button">Quels cocktails avec mes ingrédients ?</button>
       <button type="button" class="button">Mes cocktails</button>
@@ -21,7 +21,13 @@
             return {
                 login: 'Lucas'
             }
+        },
+        methods:{
+            redirectList:function (){
+                this.$router.push({path: "/listeCocktail"})
+            }
         }
+
     }
 </script>
 
