@@ -4,6 +4,8 @@
       <h1>Bonjour {{login}}</h1>
       <h1>Bienvenue sur Api-Tise !</h1>
     </div>
+    <button v-if="!isConnected" @click="redirectLogin()" type="button" class="buttonLogin btn btn-outline-success">Connexion</button>
+    <button v-if="isConnected"  type="button" class="buttonLogin btn btn-outline-danger">Déconnexion</button>
     <div id="buttons">
       <button @click="redirectList('1')" type="button" class="button">Liste des cocktails</button>
       <button @click="redirectList('2')" type="button" class="button">Cocktail aléatoire</button>
@@ -19,7 +21,8 @@
         components: {},
         data() {
             return {
-                login: 'Lucas'
+                login: '',
+                isConnected: false
             }
         },
         methods:{
@@ -38,8 +41,21 @@
                   // this.$router.push({path: "/"})
                   break;
               }
-
+            },
+            redirectLogin:function(){
+                this.$router.push({path: "/login"})
+            },
+            verifConnected:function(){
+                if(this.login === ''){
+                  this.isConnected = false
+                }
+                else{
+                    this.isConnected = true
+                }
             }
+        },
+        mounted:function(){
+          this.verifConnected()
         }
 
     }
@@ -93,6 +109,10 @@
     background-color: cornflowerblue;
     color: white;
     cursor: url(http://cur.cursors-4u.net/food/foo-5/foo462.cur), default;
+  }
+  .buttonLogin{
+    position: absolute;
+    right:2px;
   }
 
 </style>
