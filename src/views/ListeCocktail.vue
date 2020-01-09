@@ -8,7 +8,7 @@
 
     <div class="list-cocktail">
       <div class="input">
-      <input type="text" v-on:change="getInfosByLetters()" v-model="search" name="search" class="inputSearch" placeholder="Rechercher un cocktail..">
+      <input type="text" v-model="search" name="search" class="inputSearch" placeholder="Rechercher un cocktail..">
       </div>
       <ul v-if="search === ''">
         <li v-for="(i,key) in sortedArrayBase" :key="key">
@@ -40,6 +40,11 @@
                 search:'',
                 infosByLetters:[],
                 errors:''
+            }
+        },
+        watch:{
+            search: function () {
+              this.getInfosByLetters()
             }
         },
         created() {
