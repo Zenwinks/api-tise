@@ -1,7 +1,7 @@
 <template>
-    <div id="searchcocktailbyingredient">
+    <div class="searchcocktailbyingredient">
+        <button @click="redirectAccueil()" type="button" class="buttonAccueil btn btn-info">Accueil</button>
         <div class="title">
-            <button @click="redirectAccueil()" type="button" class="buttonAccueil btn btn-info">Accueil</button>
             <h1>Api-Tise</h1>
             <h2>Recherche de cocktails par ingredient</h2>
 
@@ -11,7 +11,7 @@
                 <button @click="recherche" type="submit" class="btn btn-default"><span class="search-wrapper">Valider</span></button>
             </div>
 
-            <div id="listCocktails">
+            <div class="listCocktails">
                 <ul>
                     <li v-for="(i,key) in infos" :key="key">
                         <p>{{i.strDrink}}</p>
@@ -60,7 +60,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .title {
         margin-top: 30px;
@@ -103,6 +103,43 @@
         font-size: 12px;
         color: rgba(0, 0, 0, 0.5);
         font-weight: 100;
+    }
+
+    .buttonAccueil{
+        margin: 5px;
+        width:  10%;
+    }
+
+    .listCocktails {
+        width: 100%;
+        height: 80%;
+    }
+
+    ul {
+        list-style: none;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center  ;
+
+        li {
+            width: 15%;
+            margin: 20px;
+            float: left;
+
+            img {
+                width: 80%;
+            }
+        }
+    }
+
+    .searchcocktailbyingredient {
+        width: 100%;
+        height: 100%;
     }
 
 </style>
