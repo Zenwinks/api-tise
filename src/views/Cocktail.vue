@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="redirectAccueil()" type="button" class="buttonAccueil btn btn-info">Accueil</button>
     <div class="page">
       <h1>{{infoCocktail.strDrink}}</h1>
       <div class="img">
@@ -49,7 +50,10 @@
                         this.ingredient.push(this.infoCocktail["strIngredient"+i])
                     }
                 }
-            }
+            },
+            redirectAccueil: function () {
+                this.$router.push({path: "/"})
+            },
         }
     }
 </script>
@@ -79,6 +83,11 @@
   .id-img {
     max-width: 100%;
     max-height: 100%;
+  }
+
+  .buttonAccueil {
+    margin: 5px;
+    width: 10%;
   }
 
   h2 {

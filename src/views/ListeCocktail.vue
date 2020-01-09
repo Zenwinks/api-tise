@@ -169,6 +169,7 @@
       margin: 20px;
       float: left;
       border: 1px solid black;
+      padding: 20px;
 
       img {
         width: 80%;
@@ -179,6 +180,7 @@
     li:hover {
       cursor: pointer;
       color: orange;
+      font-weight: bold;
     }
   }
 
