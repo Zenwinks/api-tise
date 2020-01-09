@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="retour" type="button" class="buttonRetour btn btn-info">Retour</button>
     <button @click="redirectAccueil()" type="button" class="buttonAccueil btn btn-info">Accueil</button>
     <div class="page">
       <h1>{{infoCocktail.strDrink}}</h1>
@@ -51,6 +52,9 @@
                     }
                 }
             },
+            retour:function(){
+                history.go(-1)
+            },
             redirectAccueil: function () {
                 this.$router.push({path: "/"})
             },
@@ -85,7 +89,7 @@
     max-height: 100%;
   }
 
-  .buttonAccueil {
+  .buttonAccueil, .buttonRetour {
     margin: 5px;
     width: 10%;
   }
