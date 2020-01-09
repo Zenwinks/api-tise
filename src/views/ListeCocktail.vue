@@ -18,7 +18,7 @@
       </ul>
 
       <ul v-if="search !== ''">
-        <li v-for="(i,key) in sortedArrayLetter" :key="key">
+        <li  @click="redirectCocktail(i.idDrink)" v-for="(i,key) in sortedArrayLetter" :key="key">
           <p>{{i.strDrink}}</p>
           <img :src="i.strDrinkThumb+'/preview'">
         </li>
