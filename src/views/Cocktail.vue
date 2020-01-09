@@ -1,0 +1,87 @@
+<template>
+  <div>
+    <div class="page">
+      <h1>{{infoCocktail.strDrink}}</h1>
+      <div class="img">
+        <img :src="infoCocktail.strDrinkThumb" class="id-img">
+      </div>
+      <div class="infos">
+        <h2>Ingrédients : </h2>
+        <ul>
+          <li v-for="(i,key) in ingredient" :key="key">
+            <p>{{i}}</p>
+            <img :src="'https://www.thecocktaildb.com/images/ingredients/'+i+'-small.png'">
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</template>
+
+<script>
+    import axios from "axios";
+
+    export default {
+        name: "Cocktail.vue",
+        data() {
+            return {
+                infoCocktail: [],
+                id: this.$route.params.id,
+                ingredient: []
+            }
+        },
+        created() {
+            axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=` + this.id)
+                .then(response => {
+                    this.infoCocktail = response.data.drinks[0]
+                    this.getIngredients()
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
+
+        },
+        methods:{
+            getIngredients(){
+                for (let i = 1; i < 15; i++) {
+                    if(this.infoCocktail["strIngredient"+i]){
+                        this.ingredient.push(this.infoCocktail["strIngredient"+i])
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+<style scoped lang="scss">
+  h1 {
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    align-items: center;
+  }
+
+  .img{
+    width:20%;
+    height:20%;
+    margin-top: 20px;
+  }
+
+  .id-img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  h2 {
+    margin-top: 20px;
+  }
+</style>

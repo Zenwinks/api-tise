@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import ListeCocktail from "../views/ListeCocktail";
 import SearchCocktailByIngredient from "../views/SearchCocktailByIngredient";
+import Cocktail from "../views/Cocktail";
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/rechercheCocktail',
     name: 'SearchCocktailByIngredient',
     component: SearchCocktailByIngredient
+  },
+  {
+    path: '/cocktail/:id',
+    name: 'cocktail',
+    component: Cocktail
   }
 ]
 
