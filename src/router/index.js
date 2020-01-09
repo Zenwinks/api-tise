@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import ListeCocktail from "../views/ListeCocktail";
 import SearchCocktailByIngredient from "../views/SearchCocktailByIngredient";
+import RandomCocktail from "../views/RandomCocktail";
 import Cocktail from "../views/Cocktail";
 
 Vue.use(VueRouter)
@@ -28,6 +29,11 @@ const routes = [
     path: '/rechercheCocktail',
     name: 'SearchCocktailByIngredient',
     component: SearchCocktailByIngredient
+  },
+  {
+    path: '/randomCocktail',
+    name: 'RandomCocktail',
+    component: RandomCocktail
   },
   {
     path: '/cocktail/:id',

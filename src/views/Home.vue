@@ -32,7 +32,7 @@
                   this.$router.push({path: "/listeCocktail"})
                   break;
                 case '2':
-                  // this.$router.push({path: "/"})
+                  this.$router.push({path: "/randomCocktail"})
                   break;
                 case '3':
                   this.$router.push({path: "/rechercheCocktail"})
