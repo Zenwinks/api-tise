@@ -48,15 +48,6 @@
                     })
             }
         },
-        // created() {
-        //     axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=`+this.ingredient)
-        //         .then(response => {
-        //             this.infos = response.data.drinks
-        //         })
-        //         .catch(e => {
-        //             this.errors.push(e)
-        //         })
-        // }
     }
 </script>
 
