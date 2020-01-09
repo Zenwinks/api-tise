@@ -24,7 +24,7 @@ const routes = [
     component: ListeCocktail
   },
   {
-    path: '/i',
+    path: '/rechercheCocktail',
     name: 'SearchCocktailByIngredient',
     component: SearchCocktailByIngredient
   }

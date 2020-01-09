@@ -1,32 +1,21 @@
 <template>
     <div id="searchcocktailbyingredient">
         <div class="title">
+            <button @click="redirectAccueil()" type="button" class="buttonAccueil btn btn-info">Accueil</button>
             <h1>Api-Tise</h1>
             <h2>Recherche de cocktails par ingredient</h2>
 
-            <div class="center">
-                <table width="400" align="center">
-                    <tbody><tr>
-                        <td>
-                            <form class="navbar-form" action="../browse.php" autocomplete="off">
-                                <div class="input-group">
-                                    <input type="text" name="s" class="form-control" autocomplete="off" placeholder="Search for a Cocktail...">
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody></table>
-
-                <img src="images/icons/cocktail-logo.png"> <b>Total Drinks: </b> 592<img src="images/transparent.png" width="10" height="1"><img src="images/icons/ingredient-logo.png"> <b>Total Ingredients: </b>475<img src="images/transparent.png" width="10" height="1"><img src="images/icons/image2.png"> <b>Drink Images: </b>592		<br>
+            <div class="search-wrapper">
+                <input @keyup.enter="recherche" type="text" v-model="ingredient" name="ingredient" class="inputSearch" placeholder="Rechercher un cocktail..">
+                    <label class="label-search-wrapper">Saississer un ingrédient:</label>
+                <button @click="recherche" type="submit" class="btn btn-default"><span class="search-wrapper">Valider</span></button>
             </div>
 
             <div id="listCocktails">
                 <ul>
                     <li v-for="(i,key) in infos" :key="key">
                         <p>{{i.strDrink}}</p>
+                        <img :src="i.strDrinkThumb+'/preview'">
                     </li>
                 </ul>
             </div>
@@ -41,34 +30,33 @@
         name: "SearchCocktailByIngredient",
         data() {
             return {
-                ingredient: "Gin",
-                infos: [],
-                searchString: "",
-                // The data model. These items would normally be requested via AJAX,
-                // but are hardcoded here for simplicity.
-                articles: [
-                    {
-                        "title": "What You Need To Know About CSS Variables",
-                        "url": "https://tutorialzine.com/2016/03/what-you-need-to-know-about-css-variables/",
-                        "image": "https://tutorialzine.com/media/2016/03/css-variables.jpg"
-                    },
-                    {
-                        "title": "Freebie: 4 Great Looking Pricing Tables",
-                        "url": "https://tutorialzine.com/2016/02/freebie-4-great-looking-pricing-tables/",
-                        "image": "https://tutorialzine.com/media/2016/02/great-looking-pricing-tables.jpg"
-                    }
-                ]
+                ingredient: '',
+                infos: []
             }
         },
-        created() {
-            axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=`+this.ingredient)
-                .then(response => {
-                    this.infos = response.data.drinks
-                })
-                .catch(e => {
-                    this.errors.push(e)
-                })
-        }
+        methods:{
+            redirectAccueil:function(){
+                this.$router.push({path: "/"})
+            },
+            recherche:function(){
+                axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=`+this.ingredient)
+                    .then(response => {
+                        this.infos = response.data.drinks
+                    })
+                    .catch(e => {
+                        this.errors.push(e)
+                    })
+            }
+        },
+        // created() {
+        //     axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=`+this.ingredient)
+        //         .then(response => {
+        //             this.infos = response.data.drinks
+        //         })
+        //         .catch(e => {
+        //             this.errors.push(e)
+        //         })
+        // }
     }
 </script>
 
@@ -82,6 +70,39 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+
+    .search-wrapper {
+        position: relative;
+    }
+    .search-wrapper label {
+        position: absolute;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.5);
+        top: 8px;
+        left: 12px;
+        z-index: -1;
+        transition: 0.15s all ease-in-out;
+    }
+    .search-wrapper input {
+        padding: 4px 12px;
+        color: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        transition: 0.15s all ease-in-out;
+        background: white;
+    }
+    .search-wrapper input:focus {
+        outline: none;
+        transform: scale(1.05);
+    }
+    .search-wrapper input:focus + label {
+        font-size: 10px;
+        transform: translateY(-24px) translateX(-12px);
+    }
+    .search-wrapper input::-webkit-input-placeholder {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.5);
+        font-weight: 100;
     }
 
 </style>

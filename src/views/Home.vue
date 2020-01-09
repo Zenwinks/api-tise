@@ -35,7 +35,7 @@
                   // this.$router.push({path: "/"})
                   break;
                 case '3':
-                  this.$router.push({path: "/i"})
+                  this.$router.push({path: "/rechercheCocktail"})
                   break;
                 case '4':
                   // this.$router.push({path: "/"})
