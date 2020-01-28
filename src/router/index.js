@@ -6,6 +6,7 @@ import ListeCocktail from "../views/ListeCocktail";
 import SearchCocktailByIngredient from "../views/SearchCocktailByIngredient";
 import RandomCocktail from "../views/RandomCocktail";
 import Cocktail from "../views/Cocktail";
+import Register from "../views/Register";
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
   {
     path: '/listeCocktail',

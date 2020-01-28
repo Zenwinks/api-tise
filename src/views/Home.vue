@@ -4,8 +4,15 @@
       <h1>Bonjour {{login}}</h1>
       <h1>Bienvenue sur Api-Tise !</h1>
     </div>
-    <button v-if="!isConnected" @click="redirectLogin()" type="button" class="buttonLogin btn btn-outline-success">Connexion</button>
-    <button v-if="isConnected"  type="button" class="buttonLogin btn btn-outline-danger">Déconnexion</button>
+    <div class="registerButtons">
+      <button v-if="!isConnected" @click="redirectLogin()" type="button" class="buttonLogin btn btn-outline-success">
+        Connexion
+      </button>
+      <button v-if="!isConnected" @click="redirectRegister()" type="button" class="buttonLogin btn btn-outline-success">
+        S'enregistrer
+      </button>
+      <button v-if="isConnected" type="button" class="buttonLogin btn btn-outline-danger">Déconnexion</button>
+    </div>
     <div id="buttons">
       <button @click="redirectList('1')" type="button" class="button">Liste des cocktails</button>
       <button @click="redirectList('2')" type="button" class="button">Cocktail aléatoire</button>
@@ -16,49 +23,47 @@
 </template>
 
 <script>
-    export default {
-        name: 'Home',
-        components: {},
-        data() {
-            return {
-                login: '',
-                isConnected: false
-            }
-        },
-        methods:{
-            redirectList:function (page){
-              switch (page) {
-                case '1':
-                  this.$router.push({path: "/listeCocktail"})
-                  break;
-                case '2':
-                  this.$router.push({path: "/randomCocktail"})
-                  break;
-                case '3':
-                  this.$router.push({path: "/rechercheCocktail"})
-                  break;
-                case '4':
-                  // this.$router.push({path: "/"})
-                  break;
-              }
-            },
-            redirectLogin:function(){
-                this.$router.push({path: "/login"})
-            },
-            verifConnected:function(){
-                if(this.login === ''){
-                  this.isConnected = false
-                }
-                else{
-                    this.isConnected = true
-                }
-            }
-        },
-        mounted:function(){
-          this.verifConnected()
+  export default {
+    name: 'Home',
+    components: {},
+    data() {
+      return {
+        login: '',
+        isConnected: false
+      }
+    },
+    methods: {
+      redirectList: function (page) {
+        switch (page) {
+          case '1':
+            this.$router.push({path: "/listeCocktail"})
+            break;
+          case '2':
+            this.$router.push({path: "/randomCocktail"})
+            break;
+          case '3':
+            this.$router.push({path: "/rechercheCocktail"})
+            break;
+          case '4':
+            // this.$router.push({path: "/"})
+            break;
         }
-
+      },
+      redirectLogin: function () {
+        this.$router.push({path: "/login"})
+      },
+      redirectRegister: function () {
+        this.$router.push({path: "/register"})
+      },
+      verifConnected: function () {
+        this.isConnected = this.login !== '';
+      }
+    },
+    mounted: function () {
+      this.verifConnected()
     }
+
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -110,9 +115,15 @@
     color: white;
     cursor: url(http://cur.cursors-4u.net/food/foo-5/foo462.cur), default;
   }
-  .buttonLogin{
+
+  .registerButtons {
     position: absolute;
-    right:2px;
+    right: 2px;
+  }
+
+  .buttonLogin {
+    margin-right: 10px;
+    margin-top: 10px;
   }
 
 </style>

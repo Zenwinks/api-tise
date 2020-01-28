@@ -6,17 +6,19 @@
       </div>
       <div class="login">
         <div class="form-group">
+          <label for="name">Nom</label>
+          <input type="text" class="form-control" id="name">
+        </div>
+        <div class="form-group">
           <label for="email">E-mail</label>
           <input type="text" class="form-control" id="email">
         </div>
         <div class="form-group">
-          <label for="pwd">Mot de passe</label>
+          <label for="pwd">Password</label>
           <input type="password" class="form-control" id="pwd">
         </div>
         <div class="error" v-if="error">Le nom d'utilisateur ou le mot de passe est incorrect</div>
-        <button type="button" @click="login()" class="btn btn-success btn-lg">Se connecter</button>
-        <button @click="authenticate('facebook')">Facebook</button>
-        <button @click="authenticate('google')">Google</button>
+        <button type="button" @click="register()" class="btn btn-success btn-lg">S'enregistrer</button>
       </div>
     </div>
   </div>
@@ -24,7 +26,7 @@
 
 <script>
   export default {
-    name: "Login",
+    name: "Register",
     data() {
       return {
         email: '',
@@ -33,16 +35,10 @@
       }
     },
     methods: {
-      // eslint-disable-next-line vue/no-dupe-keys
-      login: function () {
+      register: function () {
         // eslint-disable-next-line no-undef
-        this.$auth.login({email, password}).then(function () {
-          // Execute application logic after successful login
-        })
-      },
-      authenticate: function (provider) {
-        this.$auth.authenticate(provider).then(function () {
-          // Execute application logic after successful social authentication
+        this.$auth.register({name, email, password}).then(function () {
+          // Execute application logic after successful registration
         })
       }
     }
