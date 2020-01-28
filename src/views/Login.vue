@@ -7,22 +7,29 @@
       <div class="login">
         <div class="form-group">
           <label for="email">E-mail</label>
-          <input type="text" class="form-control" id="email">
+          <input type="text" v-model="email" class="form-control" id="email">
         </div>
         <div class="form-group">
           <label for="pwd">Mot de passe</label>
-          <input type="password" class="form-control" id="pwd">
+          <input type="password" v-model="password" class="form-control" id="pwd">
         </div>
         <div class="error" v-if="error">Le nom d'utilisateur ou le mot de passe est incorrect</div>
-        <button type="button" @click="login()" class="btn btn-success btn-lg">Se connecter</button>
-        <button @click="authenticate('facebook')">Facebook</button>
-        <button @click="authenticate('google')">Google</button>
+        <div class="actionButtons">
+          <div>
+            <button type="button" @click="login()" class="btn btn-success btn-lg">Se connecter</button>
+          </div>
+          <div>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import auth from "../auth";
+
   export default {
     name: "Login",
     data() {
@@ -33,17 +40,8 @@
       }
     },
     methods: {
-      // eslint-disable-next-line vue/no-dupe-keys
       login: function () {
-        // eslint-disable-next-line no-undef
-        this.$auth.login({email, password}).then(function () {
-          // Execute application logic after successful login
-        })
-      },
-      authenticate: function (provider) {
-        this.$auth.authenticate(provider).then(function () {
-          // Execute application logic after successful social authentication
-        })
+        auth.login(this.email, this.password)
       }
     }
   }
@@ -89,6 +87,19 @@
           align-items: center;
           justify-content: center;
           border-radius: 10px;
+        }
+
+        .actionButtons {
+          display: flex;
+          flex-direction: column;
+
+          div {
+            margin-top: 10px;
+
+            button:last-child {
+              margin-left: 10px;
+            }
+          }
         }
       }
 

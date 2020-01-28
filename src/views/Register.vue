@@ -18,7 +18,7 @@
           <input type="password" class="form-control" id="pwd">
         </div>
         <div class="error" v-if="error">Le nom d'utilisateur ou le mot de passe est incorrect</div>
-        <button type="button" @click="register()" class="btn btn-success btn-lg">S'enregistrer</button>
+        <button type="button" class="btn btn-success btn-lg">S'enregistrer</button>
       </div>
     </div>
   </div>
@@ -34,14 +34,7 @@
         error: false
       }
     },
-    methods: {
-      register: function () {
-        // eslint-disable-next-line no-undef
-        this.$auth.register({name, email, password}).then(function () {
-          // Execute application logic after successful registration
-        })
-      }
-    }
+    methods: {}
   }
 </script>
 

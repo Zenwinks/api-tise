@@ -4,15 +4,7 @@
       <h1>Bonjour {{login}}</h1>
       <h1>Bienvenue sur Api-Tise !</h1>
     </div>
-    <div class="registerButtons">
-      <button v-if="!isConnected" @click="redirectLogin()" type="button" class="buttonLogin btn btn-outline-success">
-        Connexion
-      </button>
-      <button v-if="!isConnected" @click="redirectRegister()" type="button" class="buttonLogin btn btn-outline-success">
-        S'enregistrer
-      </button>
-      <button v-if="isConnected" type="button" class="buttonLogin btn btn-outline-danger">Déconnexion</button>
-    </div>
+    <button v-if="isConnected()" type="button" @click="logout()" class="buttonLogin btn btn-outline-danger">Déconnexion</button>
     <div id="buttons">
       <button @click="redirectList('1')" type="button" class="button">Liste des cocktails</button>
       <button @click="redirectList('2')" type="button" class="button">Cocktail aléatoire</button>
@@ -23,13 +15,14 @@
 </template>
 
 <script>
+  import auth from "../auth";
+
   export default {
     name: 'Home',
     components: {},
     data() {
       return {
-        login: '',
-        isConnected: false
+        login: ''
       }
     },
     methods: {
@@ -49,20 +42,14 @@
             break;
         }
       },
-      redirectLogin: function () {
-        this.$router.push({path: "/login"})
+      logout () {
+        auth.logout()
+        this.$router.go('/login')
       },
-      redirectRegister: function () {
-        this.$router.push({path: "/register"})
-      },
-      verifConnected: function () {
-        this.isConnected = this.login !== '';
+      isConnected () {
+        return auth.checkAuth()
       }
-    },
-    mounted: function () {
-      this.verifConnected()
     }
-
   }
 </script>
 
@@ -116,14 +103,9 @@
     cursor: url(http://cur.cursors-4u.net/food/foo-5/foo462.cur), default;
   }
 
-  .registerButtons {
+  .buttonLogin {
     position: absolute;
     right: 2px;
-  }
-
-  .buttonLogin {
-    margin-right: 10px;
-    margin-top: 10px;
   }
 
 </style>
