@@ -6,9 +6,8 @@
       <h2>Recherche de cocktails par ingredient</h2>
 
       <div class="search-wrapper">
-        <input @keyup.enter="recherche" type="text" v-model="ingredient" name="ingredient" class="inputSearch"
-               placeholder="Rechercher un cocktail..">
-        <label class="label-search-wrapper">Saississer un ingrédient:</label>
+        <input @keyup.enter="recherche" type="text" v-model="ingredient" name="ingredient" class="inputSearch">
+        <label class="label-search-wrapper">Saississer un ingrédient :</label>
         <button @click="recherche" type="submit" class="btn btn-default"><span class="search-wrapper">Valider</span>
         </button>
       </div>
@@ -26,34 +25,34 @@
 </template>
 
 <script>
-    import axios from 'axios';
+  import axios from 'axios';
 
-    export default {
-        name: "SearchCocktailByIngredient",
-        data() {
-            return {
-                ingredient: '',
-                infos: []
-            }
-        },
-        methods: {
-            redirectAccueil: function () {
-                this.$router.push({path: "/"})
-            },
-            recherche: function () {
-                axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=` + this.ingredient)
-                    .then(response => {
-                        this.infos = response.data.drinks
-                    })
-                    .catch(e => {
-                        this.errors.push(e)
-                    })
-            },
-            redirectCocktail: function (id) {
-                this.$router.push({name: 'cocktail', params: {id: id}})
-            }
-        },
-    }
+  export default {
+    name: "SearchCocktailByIngredient",
+    data() {
+      return {
+        ingredient: '',
+        infos: []
+      }
+    },
+    methods: {
+      redirectAccueil: function () {
+        this.$router.push({path: "/"})
+      },
+      recherche: function () {
+        axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=` + this.ingredient)
+          .then(response => {
+            this.infos = response.data.drinks
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+      },
+      redirectCocktail: function (id) {
+        this.$router.push({name: 'cocktail', params: {id: id}})
+      }
+    },
+  }
 </script>
 
 <style scoped lang="scss">
@@ -131,7 +130,7 @@
       width: 15%;
       margin: 20px;
       float: left;
-      border: 1px solid black;
+      box-shadow: 0 0 11px;
       padding: 20px;
 
       img {

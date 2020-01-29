@@ -51,6 +51,12 @@ const routes = [
     name: 'cocktail',
     component: Cocktail,
     beforeEnter: authGuard
+  },
+  {
+    path: '/*',
+    name: 'cocktail',
+  component: Cocktail,
+  beforeEnter: authGuard
   }
 ]
 

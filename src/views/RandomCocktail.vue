@@ -5,7 +5,7 @@
       <h1>Api-Tise</h1>
       <h2>Cocktail aléatoire</h2>
 
-      <button @click="reload" type="button" class="btn btn-info">Relancer le random</button>
+      <button @click="getCocktail" type="button" class="btn btn-info">Relancer le random</button>
 
       <div class="listCocktails">
         <div @click="redirectCocktail(infos.idDrink)" class="cocktail">
@@ -18,36 +18,36 @@
 </template>
 
 <script>
-    import axios from 'axios';
+  import axios from 'axios';
 
-    export default {
-        name: "RandomCocktail",
-        data() {
-            return {
-                infos: []
-            }
-        },
-        methods: {
-            redirectAccueil: function () {
-                this.$router.push({path: "/"})
-            },
-            reload: function () {
-                window.location.reload()
-            },
-            redirectCocktail: function (id) {
-                this.$router.push({name: 'cocktail', params: {id: id}})
-            }
-        },
-        created() {
-            axios.get(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
-                .then(response => {
-                    this.infos = response.data.drinks[0]
-                })
-                .catch(e => {
-                    this.errors.push(e)
-                })
-        },
-    }
+  export default {
+    name: "RandomCocktail",
+    data() {
+      return {
+        infos: []
+      }
+    },
+    methods: {
+      redirectAccueil: function () {
+        this.$router.push({path: "/"})
+      },
+      getCocktail: function () {
+        axios.get(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+          .then(response => {
+            this.infos = response.data.drinks[0]
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+      },
+      redirectCocktail: function (id) {
+        this.$router.push({name: 'cocktail', params: {id: id}})
+      }
+    },
+    created() {
+      this.getCocktail()
+    },
+  }
 </script>
 
 <style scoped lang="scss">
@@ -82,12 +82,12 @@
     margin-top: 20px;
   }
 
-  .cocktail{
-    border: 1px solid black;
+  .cocktail {
+    box-shadow: 0 0 11px;
     padding: 20px;
   }
 
-  .cocktail:hover{
+  .cocktail:hover {
     cursor: pointer;
     color: orange;
     font-weight: bold;

@@ -169,7 +169,7 @@
       max-height: 40%;
       margin: 20px;
       float: left;
-      border: 1px solid black;
+      box-shadow: 0 0 11px;
       padding: 20px;
 
       img {
