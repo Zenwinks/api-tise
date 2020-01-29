@@ -7,7 +7,7 @@ import SearchCocktailByIngredient from "../views/SearchCocktailByIngredient";
 import RandomCocktail from "../views/RandomCocktail";
 import Cocktail from "../views/Cocktail";
 import Register from "../views/Register";
-import auth from "../auth";
+import {authGuard} from "../auth/authGuard";
 
 Vue.use(VueRouter)
 
@@ -16,7 +16,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    beforeEnter: auth.requireAuth
+    beforeEnter: authGuard
   },
   {
     path: '/login',
@@ -32,25 +32,25 @@ const routes = [
     path: '/listeCocktail',
     name: 'ListeCocktail',
     component: ListeCocktail,
-    beforeEnter: auth.requireAuth
+    beforeEnter: authGuard
   },
   {
     path: '/rechercheCocktail',
     name: 'SearchCocktailByIngredient',
     component: SearchCocktailByIngredient,
-    beforeEnter: auth.requireAuth
+    beforeEnter: authGuard
   },
   {
     path: '/randomCocktail',
     name: 'RandomCocktail',
     component: RandomCocktail,
-    beforeEnter: auth.requireAuth
+    beforeEnter: authGuard
   },
   {
     path: '/cocktail/:id',
     name: 'cocktail',
     component: Cocktail,
-    beforeEnter: auth.requireAuth
+    beforeEnter: authGuard
   }
 ]
 

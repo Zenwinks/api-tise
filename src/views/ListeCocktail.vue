@@ -18,7 +18,7 @@
       </ul>
 
       <ul v-if="search !== ''">
-        <li  @click="redirectCocktail(i.idDrink)" v-for="(i,key) in sortedArrayLetter" :key="key">
+        <li @click="redirectCocktail(i.idDrink)" v-for="(i,key) in sortedArrayLetter" :key="key">
           <p>{{i.strDrink}}</p>
           <img :src="i.strDrinkThumb+'/preview'">
         </li>
@@ -29,82 +29,82 @@
 </template>
 
 <script>
-    import axios from 'axios';
+  import axios from 'axios';
 
-    export default {
-        name: "ListeCocktail",
-        data() {
-            return {
-                letter: "a",
-                infos: [],
-                search: '',
-                infosByLetters: [],
-                errors: ''
-            }
-        },
-        watch: {
-            search: function () {
-                this.getInfosByLetters()
-            }
-        },
-        created() {
-            axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=` + this.letter)
-                .then(response => {
-                    this.infos = response.data.drinks
-                })
-                .catch(e => {
-                    this.errors.push(e)
-                })
-        },
-        methods: {
-            redirectAccueil: function () {
-                this.$router.push({path: "/"})
-            },
-            getInfosByLetters() {
-                axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=` + this.search)
-                    .then(response => {
-                        this.infosByLetters = response.data.drinks
-                    })
-                    .catch(e => {
-                        this.errors.push(e)
-                    })
-            },
-            redirectCocktail: function (id) {
-                this.$router.push({name: 'cocktail', params: {id: id}})
-            }
-        },
-        computed: {
-            sortedArrayBase: function () {
-                function compare(a, b) {
-                    if (a.strDrink < b.strDrink)
-                        return -1;
-                    if (a.strDrink > b.strDrink)
-                        return 1;
-                    return 0;
-                }
-
-                return this.infos.slice().sort(compare);
-            },
-            sortedArrayLetter: function () {
-                function compare(a, b) {
-                    if (a.strDrink < b.strDrink)
-                        return -1;
-                    if (a.strDrink > b.strDrink)
-                        return 1;
-                    return 0;
-                }
-
-                if (this.infosByLetters) {
-                    return this.infosByLetters.slice().sort(compare);
-                } else {
-                    return null;
-                }
-            }
-
-
+  export default {
+    name: "ListeCocktail",
+    data() {
+      return {
+        letter: "a",
+        infos: [],
+        search: '',
+        infosByLetters: [],
+        errors: ''
+      }
+    },
+    watch: {
+      search: function () {
+        this.getInfosByLetters()
+      }
+    },
+    created() {
+      axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=` + this.letter)
+        .then(response => {
+          this.infos = response.data.drinks
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+    },
+    methods: {
+      redirectAccueil: function () {
+        this.$router.push({path: "/"})
+      },
+      getInfosByLetters() {
+        axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=` + this.search)
+          .then(response => {
+            this.infosByLetters = response.data.drinks
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+      },
+      redirectCocktail: function (id) {
+        this.$router.push({name: 'cocktail', params: {id: id}})
+      }
+    },
+    computed: {
+      sortedArrayBase: function () {
+        function compare(a, b) {
+          if (a.strDrink < b.strDrink)
+            return -1;
+          if (a.strDrink > b.strDrink)
+            return 1;
+          return 0;
         }
 
+        return this.infos.slice().sort(compare);
+      },
+      sortedArrayLetter: function () {
+        function compare(a, b) {
+          if (a.strDrink < b.strDrink)
+            return -1;
+          if (a.strDrink > b.strDrink)
+            return 1;
+          return 0;
+        }
+
+        if (this.infosByLetters) {
+          return this.infosByLetters.slice().sort(compare);
+        } else {
+          return null;
+        }
+      }
+
+
     }
+
+  }
 </script>
 
 <style scoped lang="scss">
@@ -166,6 +166,7 @@
 
     li {
       width: 15%;
+      max-height: 40%;
       margin: 20px;
       float: left;
       border: 1px solid black;

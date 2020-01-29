@@ -19,7 +19,8 @@
             <button type="button" @click="login()" class="btn btn-success btn-lg">Se connecter</button>
           </div>
           <div>
-
+            <button type="button" @click="socialConnection('facebook')" class="btn btn-success btn-lg">Facebook</button>
+            <button type="button" @click="socialConnection('google')" class="btn btn-success btn-lg">Google</button>
           </div>
         </div>
       </div>
@@ -28,7 +29,7 @@
 </template>
 
 <script>
-  import auth from "../auth";
+  import axios from "axios";
 
   export default {
     name: "Login",
@@ -40,8 +41,18 @@
       }
     },
     methods: {
-      login: function () {
-        auth.login(this.email, this.password)
+      login() {
+        this.$auth.loginWithRedirect();
+      },
+      socialConnection: function (socialMedia) {
+        // eslint-disable-next-line no-console
+        console.log(socialMedia)
+        axios
+          .get('https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=104565000066-q7q63bouq2ct8gj73drmpu186amn6a3f.apps.googleusercontent.com&as=AE8zUQlCAtcGjZcKCRj7Fw&destination=https%3A%2F%2Flogin.eu.auth0.com&approval_state=!ChRFd0Jnczl2N2ZtWEdxcXpNUFY1UBIfQTVPVU9JRWd3bmdiUUhVU2RlLXNqMHc3VEo4Tl94WQ%E2%88%99AJDr988AAAAAXjKwNRYBosEhY6hXjkE5RUiRxC1HlFWd&oauthgdpr=1&xsrfsig=ChkAeAh8T5OlrmwG2B0GAcXLvbAHC4iY7BOHEg5hcHByb3ZhbF9zdGF0ZRILZGVzdGluYXRpb24SBXNvYWN1Eg9vYXV0aHJpc2t5c2NvcGU&flowName=GeneralOAuthFlow')
+          .then(response => {
+            // eslint-disable-next-line no-console
+            console.log(response)
+          })
       }
     }
   }

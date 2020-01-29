@@ -1,30 +1,25 @@
 <template>
   <div id="home">
     <div class="title">
-      <h1>Bonjour {{login}}</h1>
+      <h1>Bonjour {{$auth.user.name}}</h1>
       <h1>Bienvenue sur Api-Tise !</h1>
     </div>
-    <button v-if="isConnected()" type="button" @click="logout()" class="buttonLogin btn btn-outline-danger">Déconnexion</button>
+    <button v-if="isConnected()" type="button" @click="logout()" class="buttonLogin btn btn-outline-danger">
+      Déconnexion
+    </button>
     <div id="buttons">
       <button @click="redirectList('1')" type="button" class="button">Liste des cocktails</button>
       <button @click="redirectList('2')" type="button" class="button">Cocktail aléatoire</button>
       <button @click="redirectList('3')" type="button" class="button">Quels cocktails avec mes ingrédients ?</button>
-      <button @click="redirectList('4')" type="button" class="button">Mes cocktails</button>
     </div>
   </div>
 </template>
 
 <script>
-  import auth from "../auth";
 
   export default {
     name: 'Home',
     components: {},
-    data() {
-      return {
-        login: ''
-      }
-    },
     methods: {
       redirectList: function (page) {
         switch (page) {
@@ -37,17 +32,15 @@
           case '3':
             this.$router.push({path: "/rechercheCocktail"})
             break;
-          case '4':
-            // this.$router.push({path: "/"})
-            break;
         }
       },
-      logout () {
-        auth.logout()
-        this.$router.go('/login')
+      logout() {
+        this.$auth.logout({
+          returnTo: window.location.origin
+        })
       },
-      isConnected () {
-        return auth.checkAuth()
+      isConnected() {
+        return this.$auth.isAuthenticated
       }
     }
   }
