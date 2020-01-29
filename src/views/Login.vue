@@ -18,10 +18,6 @@
           <div>
             <button type="button" @click="login()" class="btn btn-success btn-lg">Se connecter</button>
           </div>
-          <div>
-            <button type="button" @click="socialConnection('facebook')" class="btn btn-success btn-lg">Facebook</button>
-            <button type="button" @click="socialConnection('google')" class="btn btn-success btn-lg">Google</button>
-          </div>
         </div>
       </div>
     </div>

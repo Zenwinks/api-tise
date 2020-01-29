@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
+// import Login from '../views/Login.vue'
 import ListeCocktail from "../views/ListeCocktail";
 import SearchCocktailByIngredient from "../views/SearchCocktailByIngredient";
 import RandomCocktail from "../views/RandomCocktail";
 import Cocktail from "../views/Cocktail";
-import Register from "../views/Register";
+// import Register from "../views/Register";
 import {authGuard} from "../auth/authGuard";
 
 Vue.use(VueRouter)
@@ -18,16 +18,16 @@ const routes = [
     component: Home,
     beforeEnter: authGuard
   },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: Register
-  },
+  // {
+  //   path: '/login',
+  //   name: 'Login',
+  //   component: Login
+  // },
+  // {
+  //   path: '/register',
+  //   name: 'Register',
+  //   component: Register
+  // },
   {
     path: '/listeCocktail',
     name: 'ListeCocktail',
